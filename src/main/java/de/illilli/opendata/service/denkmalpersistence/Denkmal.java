@@ -3,6 +3,7 @@ package de.illilli.opendata.service.denkmalpersistence;
 import java.util.Hashtable;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -38,8 +39,10 @@ public class Denkmal {
 	public double lon;
 	@JsonProperty("lat")
 	public double lat;
+	@JsonIgnore
 	@JsonProperty("displayOsmAddress")
 	public String displayOsmAddress;
+	@JsonIgnore
 	@JsonProperty("url")
 	public String url;
 
@@ -72,6 +75,7 @@ public class Denkmal {
 	@JsonProperty("feedsEntityId")
 	public int feedsEntityId;
 
+	@JsonIgnore
 	public Map<String, Object> getAsMap() {
 		Map<String, Object> map = new Hashtable<String, Object>();
 		map.put("denkmalnummer", denkmalnummer);

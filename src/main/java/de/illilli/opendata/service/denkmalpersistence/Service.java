@@ -94,11 +94,51 @@ public class Service {
 	 * @throws IOException
 	 */
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON })
-	@Path("/Denmalliste.csv")
+	@Produces({ MediaType.TEXT_PLAIN })
+	@Path("/Denkmalliste.csv")
 	public String getCsv() throws MalformedURLException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		return "";
+		CreateCvsFacade facade = new CreateCvsFacade(
+				new AllFacade().getDenkmalList());
+		return facade.getCvs();
+	}
+
+	/**
+	 * Beispiel: <a href=
+	 * "http://localhost:8080/denkmalpersistence/service/geo/Denkmalliste.csv"
+	 * >/denkmalpersistence/service/geo/Denkmalliste.csv</a></p>
+	 * 
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.TEXT_PLAIN })
+	@Path("/geo/Denkmalliste.csv")
+	public String getGeoCsv() throws MalformedURLException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		CreateCvsFacade facade = new CreateCvsFacade(
+				new AllFacade().getDenkmalList());
+		return facade.getCvs();
+	}
+
+	/**
+	 * Beispiel: <a href=
+	 * "http://localhost:8080/denkmalpersistence/service/nogeo/Denkmalliste.csv"
+	 * >/denkmalpersistence/service/nogeo/Denkmalliste.csv</a></p>
+	 * 
+	 * @return
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
+	@GET
+	@Produces({ MediaType.TEXT_PLAIN })
+	@Path("/nogeo/Denkmalliste.csv")
+	public String getNoGeoCsv() throws MalformedURLException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		CreateCvsFacade facade = new CreateCvsFacade(
+				new NoGeoFacade().getDenkmalList());
+		return facade.getCvs();
 	}
 
 }

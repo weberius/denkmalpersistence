@@ -19,7 +19,8 @@ public class GeoFacade {
 
 	private static final Logger logger = Logger.getLogger(GeoFacade.class);
 
-	FeatureCollection featureCollection = new FeatureCollection();
+	private FeatureCollection featureCollection = new FeatureCollection();
+	private List<Denkmal> denkmalList = new ArrayList<Denkmal>();
 
 	public GeoFacade() {
 		MongoClient client = new MongoClient();
@@ -44,8 +45,13 @@ public class GeoFacade {
 			feature.setId(bo.getId());
 			featureCollection.add(feature);
 			logger.debug(denkmal.toString());
+			// add denkmal to list
+			denkmalList.add(denkmal);
 		}
+	}
 
+	public List<Denkmal> getDenkmalList() {
+		return denkmalList;
 	}
 
 	public String getJson() throws JsonProcessingException {

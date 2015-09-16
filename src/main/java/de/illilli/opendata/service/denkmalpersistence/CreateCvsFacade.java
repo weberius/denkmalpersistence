@@ -22,7 +22,8 @@ public class CreateCvsFacade {
 			throws JsonProcessingException {
 
 		CsvMapper mapper = new CsvMapper();
-		CsvSchema schema = mapper.schemaFor(Denkmal.class).withHeader();
+		CsvSchema schema = mapper.schemaFor(Denkmal.class)
+				.withColumnSeparator(';').withHeader();
 		cvs = mapper.writer(schema).writeValueAsString(denkmalList);
 	}
 

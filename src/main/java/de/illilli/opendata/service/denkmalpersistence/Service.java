@@ -94,7 +94,7 @@ public class Service {
 	 * @throws IOException
 	 */
 	@GET
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Produces("application/vnd.ms-excel")
 	@Path("/Denkmalliste.csv")
 	public String getCsv() throws MalformedURLException, IOException {
 		response.setCharacterEncoding("UTF-8");
@@ -113,12 +113,12 @@ public class Service {
 	 * @throws IOException
 	 */
 	@GET
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Produces("application/vnd.ms-excel")
 	@Path("/geo/Denkmalliste.csv")
 	public String getGeoCsv() throws MalformedURLException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		CreateCvsFacade facade = new CreateCvsFacade(
-				new AllFacade().getDenkmalList());
+				new GeoFacade().getDenkmalList());
 		return facade.getCvs();
 	}
 
@@ -132,7 +132,7 @@ public class Service {
 	 * @throws IOException
 	 */
 	@GET
-	@Produces({ MediaType.TEXT_PLAIN })
+	@Produces("application/vnd.ms-excel")
 	@Path("/nogeo/Denkmalliste.csv")
 	public String getNoGeoCsv() throws MalformedURLException, IOException {
 		response.setCharacterEncoding("UTF-8");
